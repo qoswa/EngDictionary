@@ -4,5 +4,5 @@ data class WordItem(
     val id: Int,
     val wordText: String,
     val wordTranslations: String,
-    val meaningsIds: String
+    val firstMeaningId: Int
 )

@@ -45,8 +45,8 @@ class WordsSearchPresenter(
         querySubject.onNext(queryString)
     }
 
-    fun onWordClick(wordMeaningsIds: String) {
-        fragmentNavigator.openWordInfoFragment(wordMeaningsIds)
+    fun onWordClick(wordMeaningId: Int) {
+        fragmentNavigator.openWordInfoFragment(wordMeaningId)
     }
 
     private fun handleWordsSearchResult(wordsSearchResult: WordsSearchResult) {
