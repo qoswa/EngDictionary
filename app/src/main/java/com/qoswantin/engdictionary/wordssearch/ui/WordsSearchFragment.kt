@@ -1,21 +1,20 @@
 package com.qoswantin.engdictionary.wordssearch.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.qoswantin.engdictionary.R
 import com.qoswantin.engdictionary.databinding.FragmentWordsSearchBinding
 import com.qoswantin.engdictionary.mainactivity.ui.MainActivity
-import com.qoswantin.engdictionary.wordssearch.presenter.WordsSearchPresenter
 import com.qoswantin.engdictionary.wordssearch.adapter.WordsAdapter
 import com.qoswantin.engdictionary.wordssearch.di.DaggerWordsSearchComponent
 import com.qoswantin.engdictionary.wordssearch.model.WordItem
+import com.qoswantin.engdictionary.wordssearch.presenter.WordsSearchPresenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
@@ -26,9 +25,8 @@ class WordsSearchFragment : MvpAppCompatFragment(), WordsSearchView {
     @Inject
     lateinit var presenterProvider: Provider<WordsSearchPresenter>
     private val presenter by moxyPresenter { presenterProvider.get() }
-    private var binding: FragmentWordsSearchBinding? = null
-
-    lateinit var adapter: WordsAdapter
+    private val binding by viewBinding(FragmentWordsSearchBinding::bind)
+    private val adapter = WordsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         DaggerWordsSearchComponent.builder().mainActivityComponent(
@@ -39,19 +37,10 @@ class WordsSearchFragment : MvpAppCompatFragment(), WordsSearchView {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentWordsSearchBinding.inflate(inflater, container, false)
-        return binding?.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        binding?.wordsSearchInput?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.wordsSearchInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return true
             }
@@ -64,9 +53,7 @@ class WordsSearchFragment : MvpAppCompatFragment(), WordsSearchView {
     }
 
     private fun initAdapter() {
-        adapter = WordsAdapter()
-        val recycler = binding?.wordsSearchResultsList
-        recycler?.adapter = adapter
+        binding.wordsSearchResultsList.adapter = adapter
         val divider = DividerItemDecoration(context, RecyclerView.VERTICAL)
         val drawable = ResourcesCompat.getDrawable(
             resources,
@@ -76,66 +63,63 @@ class WordsSearchFragment : MvpAppCompatFragment(), WordsSearchView {
         drawable?.let {
             divider.setDrawable(it)
         }
-        recycler?.addItemDecoration(divider)
+        binding.wordsSearchResultsList.addItemDecoration(divider)
     }
 
     override fun onStart() {
         super.onStart()
-        binding?.wordsSearchInput?.query?.toString()?.let {
-            // REASONS:
-            // Idle state emitting + Reloading data after process death
-            // In case of orientation change emit will be filtered out with distinctUntilChanged
-            presenter.onQueryTextChanges(it)
-        }
+        // REASONS:
+        // Idle state emitting + Reloading data after process death
+        // In case of orientation change emit will be filtered out with distinctUntilChanged
+        presenter.onQueryTextChanges(binding.wordsSearchInput.query.toString())
     }
 
     override fun showWordsSearch(items: List<WordItem>) {
-        binding?.let {
-            it.wordsSearchResultsList.isVisible = true
-            it.wordsSearchErrorResultText.isVisible = false
-            it.wordsSearchEmptyResultText.isVisible = false
-            it.wordsSearchProgressBar.hide()
+        with(binding) {
+            wordsSearchResultsList.isVisible = true
+            wordsSearchErrorResultText.isVisible = false
+            wordsSearchEmptyResultText.isVisible = false
+            wordsSearchProgressBar.hide()
         }
         adapter.submitList(items)
     }
 
     override fun showEmptyResult() {
-        binding?.let {
-            it.wordsSearchIdleText.isVisible = false
-            it.wordsSearchResultsList.isVisible = false
-            it.wordsSearchErrorResultText.isVisible = false
-            it.wordsSearchEmptyResultText.isVisible = true
-            it.wordsSearchProgressBar.hide()
+        with(binding) {
+            wordsSearchResultsList.isVisible = true
+            wordsSearchErrorResultText.isVisible = false
+            wordsSearchEmptyResultText.isVisible = false
+            wordsSearchProgressBar.hide()
         }
     }
 
     override fun showIdle() {
-        binding?.let {
-            it.wordsSearchIdleText.isVisible = true
-            it.wordsSearchResultsList.isVisible = false
-            it.wordsSearchErrorResultText.isVisible = false
-            it.wordsSearchEmptyResultText.isVisible = false
-            it.wordsSearchProgressBar.hide()
+        with(binding) {
+            wordsSearchIdleText.isVisible = true
+            wordsSearchResultsList.isVisible = false
+            wordsSearchErrorResultText.isVisible = false
+            wordsSearchEmptyResultText.isVisible = false
+            wordsSearchProgressBar.hide()
         }
     }
 
     override fun showProgress() {
-        binding?.let {
-            it.wordsSearchIdleText.isVisible = false
-            it.wordsSearchResultsList.isVisible = false
-            it.wordsSearchErrorResultText.isVisible = false
-            it.wordsSearchEmptyResultText.isVisible = false
-            it.wordsSearchProgressBar.show()
+        with(binding) {
+            wordsSearchIdleText.isVisible = false
+            wordsSearchResultsList.isVisible = false
+            wordsSearchErrorResultText.isVisible = false
+            wordsSearchEmptyResultText.isVisible = false
+            wordsSearchProgressBar.show()
         }
     }
 
     override fun showError() {
-        binding?.let {
-            it.wordsSearchIdleText.isVisible = false
-            it.wordsSearchResultsList.isVisible = false
-            it.wordsSearchErrorResultText.isVisible = true
-            it.wordsSearchEmptyResultText.isVisible = false
-            it.wordsSearchProgressBar.hide()
+        with(binding) {
+            wordsSearchIdleText.isVisible = false
+            wordsSearchResultsList.isVisible = false
+            wordsSearchErrorResultText.isVisible = true
+            wordsSearchEmptyResultText.isVisible = false
+            wordsSearchProgressBar.hide()
         }
     }
 
