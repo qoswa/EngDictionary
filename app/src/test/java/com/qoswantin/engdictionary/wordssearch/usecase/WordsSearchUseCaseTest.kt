@@ -1,9 +1,9 @@
 package com.qoswantin.engdictionary.wordssearch.usecase
 
-import com.qoswantin.engdictionary.application.di.DictionaryService
-import com.qoswantin.engdictionary.wordssearch.model.WordModel
-import com.qoswantin.engdictionary.wordssearch.model.WordModel.MeaningLightModel
-import com.qoswantin.engdictionary.wordssearch.model.WordModel.MeaningLightModel.TranslationModel
+import com.qoswantin.engdictionary.dictionaryservice.DictionaryService
+import com.qoswantin.engdictionary.dictionaryservice.model.WordModel
+import com.qoswantin.engdictionary.dictionaryservice.model.WordModel.MeaningLightModel
+import com.qoswantin.engdictionary.dictionaryservice.model.WordModel.MeaningLightModel.TranslationModel
 import io.reactivex.rxjava3.core.Single
 import org.junit.Test
 import org.mockito.ArgumentMatchers.anyString

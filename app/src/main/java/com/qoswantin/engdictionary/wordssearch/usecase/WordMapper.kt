@@ -1,17 +1,22 @@
 package com.qoswantin.engdictionary.wordssearch.usecase
 
+import com.qoswantin.engdictionary.dictionaryservice.model.WordModel
 import com.qoswantin.engdictionary.wordssearch.model.WordItem
-import com.qoswantin.engdictionary.wordssearch.model.WordModel
 
 class WordMapper {
 
     fun mapWordModelsToItems(wordModels: List<WordModel>): List<WordItem> {
-        return wordModels.map { wordModel ->
-            WordItem(
-                wordModel.id,
-                wordModel.text,
-                wordModel.meanings.joinToString { it.translation.translationText }
-            )
-        }
+        return wordModels
+            .filter { wordModel ->
+                wordModel.meanings.isNotEmpty()
+            }
+            .map { wordModel ->
+                WordItem(
+                    wordModel.id,
+                    wordModel.text,
+                    wordModel.meanings.joinToString { it.translation.translationText },
+                    wordModel.meanings.joinToString { it.id.toString() }
+                )
+            }
     }
 }

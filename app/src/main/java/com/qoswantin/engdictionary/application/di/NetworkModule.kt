@@ -22,12 +22,6 @@ class NetworkModule {
             .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideDictionaryService(retrofit: Retrofit): DictionaryService {
-        return retrofit.create(DictionaryService::class.java)
-    }
-
     companion object {
         private const val DICTIONARY_BASE_URL = "https://dictionary.skyeng.ru"
     }

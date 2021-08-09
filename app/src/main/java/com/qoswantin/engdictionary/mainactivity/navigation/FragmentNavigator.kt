@@ -34,8 +34,8 @@ class FragmentNavigator(
         pushFragment(WordsSearchFragment.newInstance())
     }
 
-    fun openWordInfoFragment(wordId: Int) {
-        pushFragment(WordInfoFragment.newInstance(wordId))
+    fun openWordInfoFragment(wordMeaningsIds: String) {
+        pushFragment(WordInfoFragment.newInstance(wordMeaningsIds))
     }
 
     private fun pushFragment(fragment: Fragment) {

@@ -1,8 +1,8 @@
 package com.qoswantin.engdictionary.mainactivity.di
 
-import com.qoswantin.engdictionary.mainactivity.navigation.FragmentNavigator
 import com.qoswantin.engdictionary.application.di.ApplicationComponent
-import com.qoswantin.engdictionary.application.di.DictionaryService
+import com.qoswantin.engdictionary.dictionaryservice.DictionaryService
+import com.qoswantin.engdictionary.mainactivity.navigation.FragmentNavigator
 import com.qoswantin.engdictionary.mainactivity.ui.MainActivity
 import dagger.Component
 

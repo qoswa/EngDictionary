@@ -1,4 +1,4 @@
-package com.qoswantin.engdictionary.wordssearch.model
+package com.qoswantin.engdictionary.dictionaryservice.model
 
 import com.google.gson.annotations.SerializedName
 

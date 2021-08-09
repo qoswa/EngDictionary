@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.qoswantin.engdictionary.wordssearch.model.WordItem
 
 class WordsAdapter(
-    private val onWordClick: (wordId: Int) -> Unit
+    private val onWordClick: (wordMeaningsIds: String) -> Unit
 ) : ListAdapter<WordItem, WordItemViewHolder>(diffUtilCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordItemViewHolder {

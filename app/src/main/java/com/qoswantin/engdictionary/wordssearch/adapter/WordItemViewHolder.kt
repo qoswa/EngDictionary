@@ -9,11 +9,11 @@ import com.qoswantin.engdictionary.wordssearch.model.WordItem
 class WordItemViewHolder(private val binding: ItemWordBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bindItem(item: WordItem, onWordClick: (wordId: Int) -> Unit) {
+    fun bindItem(item: WordItem, onWordClick: (wordMeaningsIds: String) -> Unit) {
         binding.itemWordText.text = item.wordText
         binding.itemWordTranslations.text = item.wordTranslations
         binding.root.setOnClickListener {
-            onWordClick(item.id)
+            onWordClick(item.meaningsIds)
         }
     }
 

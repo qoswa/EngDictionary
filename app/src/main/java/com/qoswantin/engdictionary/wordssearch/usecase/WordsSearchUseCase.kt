@@ -1,6 +1,6 @@
 package com.qoswantin.engdictionary.wordssearch.usecase
 
-import com.qoswantin.engdictionary.application.di.DictionaryService
+import com.qoswantin.engdictionary.dictionaryservice.DictionaryService
 import io.reactivex.rxjava3.core.Observable
 
 class WordsSearchUseCase(

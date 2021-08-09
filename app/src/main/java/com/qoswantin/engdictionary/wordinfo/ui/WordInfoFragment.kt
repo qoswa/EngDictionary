@@ -47,10 +47,10 @@ class WordInfoFragment : MvpAppCompatFragment(R.layout.fragment_word_info), Word
     }
 
     companion object {
-        private const val WORD_ID_ARG = "word_id_key"
-        fun newInstance(wordId: Int): WordInfoFragment {
+        private const val W0RD_MEANINGS_IDS_ARG = "word_meanings_ids"
+        fun newInstance(wordMeaningsIds: String): WordInfoFragment {
             return WordInfoFragment().apply {
-                arguments = bundleOf(WORD_ID_ARG to wordId)
+                arguments = bundleOf(W0RD_MEANINGS_IDS_ARG to wordMeaningsIds)
             }
         }
     }

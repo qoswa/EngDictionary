@@ -1,6 +1,6 @@
 package com.qoswantin.engdictionary.wordinfo.di
 
-import com.qoswantin.engdictionary.application.di.DictionaryService
+import com.qoswantin.engdictionary.dictionaryservice.DictionaryService
 import com.qoswantin.engdictionary.wordinfo.presenter.WordInfoPresenter
 import com.qoswantin.engdictionary.wordinfo.usecase.WordInfoUseCase
 import dagger.Module
