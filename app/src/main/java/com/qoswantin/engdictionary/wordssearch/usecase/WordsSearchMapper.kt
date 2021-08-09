@@ -3,7 +3,7 @@ package com.qoswantin.engdictionary.wordssearch.usecase
 import com.qoswantin.engdictionary.dictionaryservice.model.WordModel
 import com.qoswantin.engdictionary.wordssearch.model.WordItem
 
-class WordMapper {
+class WordsSearchMapper {
 
     fun mapWordModelsToItems(wordModels: List<WordModel>): List<WordItem> {
         return wordModels
@@ -20,5 +20,4 @@ class WordMapper {
                 )
             }
     }
-
 }

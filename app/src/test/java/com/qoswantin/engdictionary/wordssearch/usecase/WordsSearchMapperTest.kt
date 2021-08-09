@@ -1,12 +1,13 @@
 package com.qoswantin.engdictionary.wordssearch.usecase
 
+import com.qoswantin.engdictionary.dictionaryservice.model.TranslationModel
 import com.qoswantin.engdictionary.dictionaryservice.model.WordModel
 import org.junit.Assert
 import org.junit.Test
 
-class WordMapperTest {
+class WordsSearchMapperTest {
 
-    private val mapper = WordMapper()
+    private val mapper = WordsSearchMapper()
 
     @Test
     fun `mapWordModelsToItems wordModels with no meanings results into filtering out these wordModels`() {
@@ -21,7 +22,7 @@ class WordMapperTest {
     }
 
     companion object {
-        private val dumbTranslation = WordModel.MeaningLightModel.TranslationModel("trans")
+        private val dumbTranslation = TranslationModel("trans")
         private val dumbMeaning = WordModel.MeaningLightModel(2, dumbTranslation)
         private val dumbWord = WordModel(0, "word", listOf(dumbMeaning))
         private val dumbWords = listOf(dumbWord)

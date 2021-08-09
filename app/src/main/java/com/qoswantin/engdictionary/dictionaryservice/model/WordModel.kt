@@ -15,10 +15,5 @@ data class WordModel(
         val id: Int,
         @SerializedName("translation")
         val translation: TranslationModel
-    ) {
-        data class TranslationModel(
-            @SerializedName("text")
-            val translationText: String
-        )
-    }
+    )
 }

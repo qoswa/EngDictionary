@@ -1,5 +1,6 @@
 package com.qoswantin.engdictionary.dictionaryservice
 
+import com.qoswantin.engdictionary.dictionaryservice.model.MeaningModel
 import com.qoswantin.engdictionary.dictionaryservice.model.WordModel
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
@@ -9,6 +10,6 @@ interface DictionaryService {
     @GET("/api/public/v1/words/search")
     fun searchWord(@Query("search") searchQuery: String): Single<List<WordModel>>
 
-//    @GET("/api/public/v1/meanings")
-//    fun wordInfo(@Query("ids") wordId: Int): Single<>
+    @GET("/api/public/v1/meanings")
+    fun wordInfo(@Query("ids") wordMeaningId: Int): Single<List<MeaningModel>>
 }

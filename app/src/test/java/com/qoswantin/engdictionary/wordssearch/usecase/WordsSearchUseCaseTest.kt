@@ -1,9 +1,9 @@
 package com.qoswantin.engdictionary.wordssearch.usecase
 
 import com.qoswantin.engdictionary.dictionaryservice.DictionaryService
+import com.qoswantin.engdictionary.dictionaryservice.model.TranslationModel
 import com.qoswantin.engdictionary.dictionaryservice.model.WordModel
 import com.qoswantin.engdictionary.dictionaryservice.model.WordModel.MeaningLightModel
-import com.qoswantin.engdictionary.dictionaryservice.model.WordModel.MeaningLightModel.TranslationModel
 import io.reactivex.rxjava3.core.Single
 import org.junit.Test
 import org.mockito.ArgumentMatchers.anyString
@@ -13,7 +13,7 @@ import org.mockito.kotlin.whenever
 class WordsSearchUseCaseTest {
 
     private val dictionaryService: DictionaryService = mock()
-    private val mapper: WordMapper = WordMapper()
+    private val mapper: WordsSearchMapper = WordsSearchMapper()
 
     private val useCase = WordsSearchUseCase(dictionaryService, mapper)
 

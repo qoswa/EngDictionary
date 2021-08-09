@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.core.Observable
 
 class WordsSearchUseCase(
     private val dictionaryService: DictionaryService,
-    private val wordMapper: WordMapper
+    private val wordsSearchMapper: WordsSearchMapper
 ) {
     fun searchWords(searchQuery: String): Observable<WordsSearchResult> {
         if (searchQuery.isBlank()) {
@@ -17,7 +17,7 @@ class WordsSearchUseCase(
                 if (result.isEmpty()) {
                     WordsSearchEmptyResult
                 } else {
-                    WordsSearchSuccessResult(wordMapper.mapWordModelsToItems(result))
+                    WordsSearchSuccessResult(wordsSearchMapper.mapWordModelsToItems(result))
                 }
             }
             .onErrorReturn { WordsSearchErrorResult(it) }
