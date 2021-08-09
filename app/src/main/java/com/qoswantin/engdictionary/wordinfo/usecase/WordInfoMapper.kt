@@ -11,7 +11,11 @@ class WordInfoMapper {
             meaning.id,
             meaning.text,
             meaning.translation.translationText,
-            meaning.images.first().imageUrl
+            HTTPS_SCHEME + meaning.images.first().imageUrl
         )
+    }
+
+    companion object {
+        const val HTTPS_SCHEME = "https://"
     }
 }

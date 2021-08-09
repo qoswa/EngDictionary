@@ -3,4 +3,5 @@
     <string name="words_search_empty_result_text">По вашему запросу ничего не найдено</string>
     <string name="words_search_error_text">Что-то пошло не так :(</string>
     <string name="words_search_idle_text">Введите слово для поиска перевода</string>
+    <string name="try_again">Попробовать ещё раз</string>
 </resources>

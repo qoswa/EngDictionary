@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.qoswantin.engdictionary.R
 import com.qoswantin.engdictionary.databinding.FragmentWordsSearchBinding
+import com.qoswantin.engdictionary.mainactivity.navigation.FragmentNavigator
 import com.qoswantin.engdictionary.mainactivity.ui.MainActivity
 import com.qoswantin.engdictionary.wordssearch.adapter.WordsAdapter
 import com.qoswantin.engdictionary.wordssearch.di.DaggerWordsSearchComponent
@@ -24,11 +25,15 @@ class WordsSearchFragment : MvpAppCompatFragment(R.layout.fragment_words_search)
 
     @Inject
     lateinit var presenterProvider: Provider<WordsSearchPresenter>
+
+    @Inject
+    lateinit var fragmentNavigator: FragmentNavigator
+
     private val presenter by moxyPresenter { presenterProvider.get() }
     private val binding by viewBinding(FragmentWordsSearchBinding::bind)
     private val adapter = WordsAdapter(
-        onWordClick = { wordId ->
-            presenter.onWordClick(wordId)
+        onWordClick = { wordMeaningId ->
+            fragmentNavigator.openWordInfoFragment(wordMeaningId, parentFragmentManager)
         }
     )
 

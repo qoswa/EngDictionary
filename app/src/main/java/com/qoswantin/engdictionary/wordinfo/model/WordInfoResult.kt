@@ -4,4 +4,4 @@ sealed class WordInfoResult
 
 data class WordInfoSuccessResult(val wordInfo: WordInfo) : WordInfoResult()
 object WordInfoProgressResult : WordInfoResult()
-object WordInfoErrorResult : WordInfoResult()
+data class WordInfoErrorResult(val throwable: Throwable) : WordInfoResult()

@@ -1,16 +1,13 @@
 package com.qoswantin.engdictionary.mainactivity.navigation
 
+import android.app.Activity
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.qoswantin.engdictionary.wordinfo.ui.WordInfoFragment
 import com.qoswantin.engdictionary.wordssearch.ui.WordsSearchFragment
 
-class FragmentNavigator(
-    private val activity: FragmentActivity,
-    private val fragmentManager: FragmentManager
-) {
+class FragmentNavigator {
 
     // According to documentation
     // https://developer.android.com/reference/android/content/res/Resources.html#getIdentifier
@@ -22,23 +19,23 @@ class FragmentNavigator(
         containerIdRes = container
     }
 
-    fun onBackPressed() {
-        if (fragmentManager.backStackEntryCount == 1) {
+    fun onBackPressed(supportFragmentManager: FragmentManager, activity: Activity) {
+        if (supportFragmentManager.backStackEntryCount == 1) {
             activity.finish()
         } else {
-            fragmentManager.popBackStack()
+            supportFragmentManager.popBackStack()
         }
     }
 
-    fun openWordsSearchFragment() {
-        pushFragment(WordsSearchFragment.newInstance())
+    fun openWordsSearchFragment(supportFragmentManager: FragmentManager) {
+        pushFragment(WordsSearchFragment.newInstance(), supportFragmentManager)
     }
 
-    fun openWordInfoFragment(wordMeaningId: Int) {
-        pushFragment(WordInfoFragment.newInstance(wordMeaningId))
+    fun openWordInfoFragment(wordMeaningId: Int, fragmentManager: FragmentManager) {
+        pushFragment(WordInfoFragment.newInstance(wordMeaningId), fragmentManager)
     }
 
-    private fun pushFragment(fragment: Fragment) {
+    private fun pushFragment(fragment: Fragment, fragmentManager: FragmentManager) {
         checkForContainer()
         fragmentManager
             .beginTransaction()

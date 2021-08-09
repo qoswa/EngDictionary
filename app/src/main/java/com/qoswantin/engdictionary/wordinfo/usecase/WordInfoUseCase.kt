@@ -17,12 +17,12 @@ class WordInfoUseCase(
             .toObservable()
             .map { meaningsModels ->
                 if (meaningsModels.isEmpty()) {
-                    WordInfoErrorResult
+                    WordInfoErrorResult(Throwable("Empty meanings models"))
                 } else {
                     WordInfoSuccessResult(wordInfoMapper.mapMeaningModelsToWordInfo(meaningsModels))
                 }
             }
-            .onErrorReturnItem(WordInfoErrorResult)
+            .onErrorReturn { WordInfoErrorResult(it) }
             .startWithItem(WordInfoProgressResult)
     }
 }

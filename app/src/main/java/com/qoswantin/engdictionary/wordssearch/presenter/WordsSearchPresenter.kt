@@ -45,10 +45,6 @@ class WordsSearchPresenter(
         querySubject.onNext(queryString)
     }
 
-    fun onWordClick(wordMeaningId: Int) {
-        fragmentNavigator.openWordInfoFragment(wordMeaningId)
-    }
-
     private fun handleWordsSearchResult(wordsSearchResult: WordsSearchResult) {
         when (wordsSearchResult) {
             is WordsSearchSuccessResult -> viewState?.showWordsSearch(wordsSearchResult.items)
