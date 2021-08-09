@@ -1,19 +1,22 @@
 package com.qoswantin.engdictionary.dictionaryservice.model
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class WordModel(
-    @SerializedName("id")
+    @Json(name = "id")
     val id: Int,
-    @SerializedName("text")
+    @Json(name = "text")
     val text: String,
-    @SerializedName("meanings")
+    @Json(name = "meanings")
     val meanings: List<MeaningLightModel>
 ) {
+    @JsonClass(generateAdapter = true)
     data class MeaningLightModel(
-        @SerializedName("id")
+        @Json(name = "id")
         val id: Int,
-        @SerializedName("translation")
+        @Json(name = "translation")
         val translation: TranslationModel
     )
 }

@@ -1,19 +1,22 @@
 package com.qoswantin.engdictionary.dictionaryservice.model
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class MeaningModel(
-    @SerializedName("id")
+    @Json(name = "id")
     val id: Int,
-    @SerializedName("text")
+    @Json(name = "text")
     val text: String,
-    @SerializedName("translation")
+    @Json(name = "translation")
     val translation: TranslationModel,
-    @SerializedName("images")
+    @Json(name = "images")
     val images: List<ImageModel>
 ) {
+    @JsonClass(generateAdapter = true)
     data class ImageModel(
-        @SerializedName("url")
+        @Json(name = "url")
         val imageUrl: String
     )
 }

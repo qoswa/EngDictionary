@@ -1,8 +1,10 @@
 package com.qoswantin.engdictionary.dictionaryservice.model
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class TranslationModel(
-    @SerializedName("text")
+    @Json(name = "text")
     val translationText: String
 )
