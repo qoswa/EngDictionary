@@ -2,6 +2,7 @@ package com.qoswantin.engdictionary.wordssearch.di
 
 import com.qoswantin.engdictionary.application.di.DictionaryService
 import com.qoswantin.engdictionary.wordssearch.presenter.WordsSearchPresenter
+import com.qoswantin.engdictionary.wordssearch.usecase.WordMapper
 import com.qoswantin.engdictionary.wordssearch.usecase.WordsSearchUseCase
 import dagger.Module
 import dagger.Provides
@@ -11,8 +12,17 @@ class WordsSearchModule {
 
     @Provides
     @WordsSearchScope
-    fun provideWordsSearchUseCase(dictionaryService: DictionaryService): WordsSearchUseCase {
-        return WordsSearchUseCase(dictionaryService)
+    fun provideWordMapper(): WordMapper {
+        return WordMapper()
+    }
+
+    @Provides
+    @WordsSearchScope
+    fun provideWordsSearchUseCase(
+        dictionaryService: DictionaryService,
+        wordMapper: WordMapper
+    ): WordsSearchUseCase {
+        return WordsSearchUseCase(dictionaryService, wordMapper)
     }
 
     @Provides
