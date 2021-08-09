@@ -1,5 +1,6 @@
 package com.qoswantin.engdictionary.wordssearch.presenter
 
+import com.qoswantin.engdictionary.mainactivity.navigation.FragmentNavigator
 import com.qoswantin.engdictionary.wordssearch.ui.WordsSearchView
 import com.qoswantin.engdictionary.wordssearch.usecase.*
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -10,7 +11,8 @@ import moxy.MvpPresenter
 import java.util.concurrent.TimeUnit
 
 class WordsSearchPresenter(
-    private val wordsSearchUseCase: WordsSearchUseCase
+    private val wordsSearchUseCase: WordsSearchUseCase,
+    private val fragmentNavigator: FragmentNavigator
 ) : MvpPresenter<WordsSearchView>() {
 
     private val querySubject: PublishSubject<String> = PublishSubject.create()
@@ -43,11 +45,18 @@ class WordsSearchPresenter(
         querySubject.onNext(queryString)
     }
 
+    fun onWordClick(wordId: Int) {
+        fragmentNavigator.openWordInfoFragment(wordId)
+    }
+
     private fun handleWordsSearchResult(wordsSearchResult: WordsSearchResult) {
         when (wordsSearchResult) {
             is WordsSearchSuccessResult -> viewState?.showWordsSearch(wordsSearchResult.items)
             is WordsSearchProgressResult -> viewState?.showProgress()
-            is WordsSearchErrorResult -> viewState?.showError()
+            is WordsSearchErrorResult -> {
+                wordsSearchResult.throwable.printStackTrace()
+                viewState?.showError()
+            }
             is WordsSearchEmptyResult -> viewState?.showEmptyResult()
             is WordsSearchIdleResult -> viewState?.showIdle()
         }

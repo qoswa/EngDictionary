@@ -5,14 +5,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.qoswantin.engdictionary.wordssearch.model.WordItem
 
-class WordsAdapter : ListAdapter<WordItem, WordItemViewHolder>(diffUtilCallback) {
+class WordsAdapter(
+    private val onWordClick: (wordId: Int) -> Unit
+) : ListAdapter<WordItem, WordItemViewHolder>(diffUtilCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordItemViewHolder {
         return WordItemViewHolder.newInstance(parent)
     }
 
     override fun onBindViewHolder(holder: WordItemViewHolder, position: Int) {
-        holder.bindItem(getItem(position))
+        holder.bindItem(getItem(position), onWordClick)
     }
 
     companion object {

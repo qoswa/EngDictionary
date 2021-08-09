@@ -20,13 +20,17 @@ import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 import javax.inject.Provider
 
-class WordsSearchFragment : MvpAppCompatFragment(), WordsSearchView {
+class WordsSearchFragment : MvpAppCompatFragment(R.layout.fragment_words_search), WordsSearchView {
 
     @Inject
     lateinit var presenterProvider: Provider<WordsSearchPresenter>
     private val presenter by moxyPresenter { presenterProvider.get() }
     private val binding by viewBinding(FragmentWordsSearchBinding::bind)
-    private val adapter = WordsAdapter()
+    private val adapter = WordsAdapter(
+        onWordClick = { wordId ->
+            presenter.onWordClick(wordId)
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         DaggerWordsSearchComponent.builder().mainActivityComponent(

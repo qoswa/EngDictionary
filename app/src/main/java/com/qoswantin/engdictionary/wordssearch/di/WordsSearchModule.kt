@@ -1,6 +1,7 @@
 package com.qoswantin.engdictionary.wordssearch.di
 
 import com.qoswantin.engdictionary.application.di.DictionaryService
+import com.qoswantin.engdictionary.mainactivity.navigation.FragmentNavigator
 import com.qoswantin.engdictionary.wordssearch.presenter.WordsSearchPresenter
 import com.qoswantin.engdictionary.wordssearch.usecase.WordMapper
 import com.qoswantin.engdictionary.wordssearch.usecase.WordsSearchUseCase
@@ -27,7 +28,10 @@ class WordsSearchModule {
 
     @Provides
     @WordsSearchScope
-    fun provideWordsSearchPresenter(wordsSearchUseCase: WordsSearchUseCase): WordsSearchPresenter {
-        return WordsSearchPresenter(wordsSearchUseCase)
+    fun provideWordsSearchPresenter(
+        wordsSearchUseCase: WordsSearchUseCase,
+        fragmentNavigator: FragmentNavigator
+    ): WordsSearchPresenter {
+        return WordsSearchPresenter(wordsSearchUseCase, fragmentNavigator)
     }
 }

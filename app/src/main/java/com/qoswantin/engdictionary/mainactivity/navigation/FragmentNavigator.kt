@@ -4,6 +4,7 @@ import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import com.qoswantin.engdictionary.wordinfo.ui.WordInfoFragment
 import com.qoswantin.engdictionary.wordssearch.ui.WordsSearchFragment
 
 class FragmentNavigator(
@@ -31,6 +32,10 @@ class FragmentNavigator(
 
     fun openWordsSearchFragment() {
         pushFragment(WordsSearchFragment.newInstance())
+    }
+
+    fun openWordInfoFragment(wordId: Int) {
+        pushFragment(WordInfoFragment.newInstance(wordId))
     }
 
     private fun pushFragment(fragment: Fragment) {
