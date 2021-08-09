@@ -15,8 +15,12 @@ class WordMapper {
                     wordModel.id,
                     wordModel.text,
                     wordModel.meanings.joinToString { it.translation.translationText },
-                    wordModel.meanings.joinToString { it.id.toString() }
+                    wordModel.meanings.joinToString(separator = MEANINGS_IDS_SEPARATOR) { it.id.toString() }
                 )
             }
+    }
+
+    companion object {
+        private const val MEANINGS_IDS_SEPARATOR = ","
     }
 }
