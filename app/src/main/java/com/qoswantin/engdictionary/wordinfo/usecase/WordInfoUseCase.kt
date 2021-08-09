@@ -17,7 +17,7 @@ class WordInfoUseCase(
             .toObservable()
             .map { meaningsModels ->
                 if (meaningsModels.isEmpty()) {
-                    WordInfoErrorResult(Throwable("Empty meanings models"))
+                    WordInfoErrorResult(EmptyWordMeaningsThrowable())
                 } else {
                     WordInfoSuccessResult(wordInfoMapper.mapMeaningModelsToWordInfo(meaningsModels))
                 }
@@ -25,4 +25,5 @@ class WordInfoUseCase(
             .onErrorReturn { WordInfoErrorResult(it) }
             .startWithItem(WordInfoProgressResult)
     }
+
 }
